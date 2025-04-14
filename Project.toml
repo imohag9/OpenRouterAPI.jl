@@ -1,0 +1,13 @@
+name = "OpenRouterAPI"
+uuid = "5fa99b77-8481-443e-99e2-0055499c94eb"
+authors = ["imohag9 <souidi.hamza90@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
