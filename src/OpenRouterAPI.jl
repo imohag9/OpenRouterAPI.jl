@@ -1,5 +1,8 @@
 module OpenRouterAPI
 
+using HTTP
+using JSON
+
 include("api.jl")
 include("model_info_structs.jl")
 include("chat_completion.jl")
