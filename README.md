@@ -12,85 +12,81 @@ OpenRouter.jl is a Julia package that provides a convenient interface for intera
 To install OpenRouter.jl, use the Julia package manager:
 
 ```julia
-pkg> add OpenRouter
+pkg> add OpenRouterAPI
 ```
 
-Before using the package, you need to set the `OPENROUTER_API_KEY` environment variable.
+Before using the package, you need to set the `OPENROUTER_API_KEY` environment variable
+in a .env file.
 
-```julia
-ENV["OPENROUTER_API_KEY"] = "your_api_key"
-```
 
-## Usage
+## Functions
 
-### Getting Model Information
+### `text_completion(request::TextCompletionRequest; verbose::Bool=false)`
 
-To retrieve a list of available models, use the `full_models_list()` function:
+Sends a text completion request to the OpenRouter API.
 
-```julia
-using OpenRouter
-models = full_models_list()
-println(models)
-```
+**Purpose:**
+Generates text based on a given prompt using the specified model.
 
-To search for a specific model by name, use the `search_model_by_name()` function:
+**Parameters:**
+-   `request::TextCompletionRequest`: A `TextCompletionRequest` object containing the details of the request, such as the model, prompt, and other parameters.
+-   `verbose::Bool=false`: An optional boolean parameter. If set to `true`, the function will print verbose output during the API call.
 
-```julia
-using OpenRouter
-model_name = "meta-llama"
-model = search_model_by_name(model_name, full_models_list())
-println(model)
-```
+**Return Value:**
+The API response containing the generated text.
 
-To get detailed data for a specific model, use the `get_model_data()` function:
+### `chat_completions(request::ChatCompletionsRequest; verbose::Bool=false)`
 
-```julia
-using OpenRouter
-model_id = "meta-llama/llama-2-13b-chat"
-model_data = get_model_data(model_id, full_models_list())
-println(model_data)
-```
+Sends a chat completion request to the OpenRouter API.
 
-### Creating Chat Completions
+**Purpose:**
+Generates a chat response based on a conversation history.
 
-To create a chat completion, use the `create_completion()` function:
+**Parameters:**
+-   `request::ChatCompletionsRequest`: A `ChatCompletionsRequest` object containing the details of the request, such as the model, messages, and other parameters.
+-   `verbose::Bool=false`: An optional boolean parameter. If set to `true`, the function will print verbose output during the API call.
 
-```julia
-using OpenRouter
-model = "meta-llama/llama-2-13b-chat"
-prompt = "Write a poem about the rain"
-response = create_completion(model, prompt)
-println(response)
-```
+**Return Value:**
+The API response containing the chat completion.
 
-To get a formatted response, use the `formatted_response()` function:
+### `get_all_models()`
 
-```julia
-using OpenRouter
-model = "meta-llama/llama-2-13b-chat"
-prompt = "Write a poem about the sun"
-response = formatted_response(model, prompt)
-println(response)
-```
+Retrieves a list of available models from the OpenRouter API.
 
-### Getting Credits
+**Purpose:**
+Fetches a list of models that can be used with the API.
 
-To retrieve your OpenRouter API credits, use the `get_credits()` function:
+**Parameters:**
+None
 
-```julia
-using OpenRouter
-credits = get_credits()
-println(credits)
-```
+**Return Value:**
+A list of available models.
 
-## API Reference
+### `get_credits()`
 
-*   `full_models_list()` - Retrieves a list of available models from the OpenRouter API.
-*   `search_model_by_name(input_str::String, full_list::Vector)` - Searches for models by name in a given list.
-*   `get_model_data(model_id::String, full_list::Vector)` - Retrieves detailed data for a specific model.
-*   `create_completion(model::String, prompt::String; params::Dict{String,Any}=Dict{String,Any}())` - Creates a chat completion using the OpenRouter API.
-*   `formatted_response(model::String, prompt::String; params::Dict{String,Any}=Dict{String,Any}())` - Creates a chat completion and returns the formatted response.
-*   `get_credits()` - Retrieves your OpenRouter API credits.
+Retrieves the credit balance for the authenticated user.
+
+**Purpose:**
+Checks the remaining credits for the API key.
+
+**Parameters:**
+None
+
+**Return Value:**
+The credit balance for the user.
+
+### `get_meta_key()`
+
+Retrieves information about the current API key.
+
+**Purpose:**
+Fetches metadata associated with the current API key, such as usage limits or other restrictions.
+
+**Parameters:**
+None
+
+**Return Value:**
+Information about the API key.
 
 ## License
 

@@ -1,11 +1,17 @@
 module OpenRouterAPI
+using OpenAPI
 
-using HTTP
-using JSON
+include("APIClient.jl")
+using .APIClient
 
-include("api.jl")
-include("model_info_structs.jl")
-include("chat_completion.jl")
+include("key_tools.jl")
+
 include("utils.jl")
+include("completions.jl")
+
+
+const CLIENT = OpenAPI.Clients.Client(APIClient.basepath(APIClient.DefaultApi))
+const OPEN_ROUTER_API = APIClient.DefaultApi(CLIENT)
+
 
 end
