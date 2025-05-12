@@ -1,7 +1,7 @@
 name = "OpenRouterAPI"
 uuid = "5fa99b77-8481-443e-99e2-0055499c94eb"
 authors = ["imohag9 <souidi.hamza90@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
